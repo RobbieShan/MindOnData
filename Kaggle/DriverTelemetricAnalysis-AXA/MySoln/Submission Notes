@@ -1,0 +1,52 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Dec 26 13:40:53 2014
+
+@author: robbie
+"""
+
+###############################################################################
+Submission 5:
+
+KMeans
+10 Clusters
+Removed all Average Fields
+Kept all the rest
+Score: 0.55629
+
+###############################################################################
+Submission 6:,, eda 6.0.py
+
+KMeans
+3 Clusters
+Kept all Fields
+Score:
+
+###############################################################################
+Submission 7: eda 7.0.py
+
+KMeans
+3 Clusters
+Only kept 5 fields: 'AvgDistDel' , 'AvgACosDel'  , 'SDevDistDel' ,  'SDevACosDel'  ,'SkewDistDel'
+Score:
+
+###############################################################################
+Submission 8: eda 8.0.py
+"Un-rotate" all points.. i.e. lock them in Quadrant 1
+Run Kmeans with the same fields as above: Only kept 5 fields: 'AvgDistDel' , 'AvgACosDel'  , 'SDevDistDel' ,  'SDevACosDel'  ,'SkewDistDel'
+
+Score:
+
+
+###############################################################################
+Submission 9:
+
+Score:
+
+
+###############################################################################
+Submission 10:
+
+
+Score:
+

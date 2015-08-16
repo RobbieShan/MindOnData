@@ -1,0 +1,482 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Dec 26 13:40:53 2014
+
+@author: robbie
+"""
+
+###############################################################################
+Submission 5:
+
+KMeans
+10 Clusters
+Removed all Average Fields
+Kept all the rest
+Score: 0.55629
+
+###############################################################################
+Submission 6:,, eda 6.0.py
+
+KMeans
+3 Clusters
+Kept all Fields
+Score:
+
+###############################################################################
+Submission 7: eda 7.0.py
+
+KMeans
+3 Clusters
+Only kept 5 fields: 'AvgDistDel' , 'AvgACosDel'  , 'SDevDistDel' ,  'SDevACosDel'  ,'SkewDistDel'
+Score:
+
+###############################################################################
+Submission 8: eda 8.0.py
+"Un-rotate" all points.. i.e. lock them in Quadrant 1
+Run Kmeans with the same fields as above: Only kept 5 fields: 'AvgDistDel' , 'AvgACosDel'  , 'SDevDistDel' ,  'SDevACosDel'  ,'SkewDistDel'
+
+Score:0.63539
+
+
+################Kmeans###############################################################
+Submission 9: eda 9.0.py
+"Un-rotate" all points.. i.e. lock them in Quadrant 1
+Run DBSCAN with defaults with the same fields as above: Only kept 5 fields: 'AvgDistDel' , 'AvgACosDel'  , 'SDevDistDel' ,  'SDevACosDel'  ,'SkewDistDel'
+
+Score:
+
+
+#####################################################################################
+Submission 18:
+Score: 0.60293
+Method: 
+    pca = PCA(n_components=3)
+    db = DBSCAN(eps=0.7).fit(Xpca)
+Points: 
+    Default. 
+    Non Transformed. 
+    Not Absolute
+Scoring: Silhouette with default
+Attributes:
+        [drivers[a_folder][afile]['DStats']['AvgSpd']]
+        [drivers[a_folder][afile]['DStats']['NoOfTurns']]
+        [drivers[a_folder][afile]['DStats']['TotAngOfTurns']]
+        [drivers[a_folder][afile]['DStats']['TripEndDist']]
+#####################################################################################
+Submission 19:
+Score: 0.57223
+Method: 
+    pca = PCA(n_components=3)
+    db = DBSCAN(eps=0.7,metric='canberra').fit(Xpca)
+Points: 
+    Default. 
+    Non Transformed. 
+    Not Absolute
+Scoring: Silhouette with canberra
+Attributes:
+        [drivers[a_folder][afile]['DStats']['AvgSpd']]
+        [drivers[a_folder][afile]['DStats']['NoOfTurns']]
+        [drivers[a_folder][afile]['DStats']['TotAngOfTurns']]
+        [drivers[a_folder][afile]['DStats']['TripEndDist']]
+
+#####################################################################################
+Submission 20: [Exactly similar to #19 but instead of Silhouette using Labels to define Probabilities]
+Score: 0.58275
+Method: 
+    pca = PCA(n_components=3)
+    db = DBSCAN(eps=0.7).fit(Xpca)
+Points: 
+    Default. 
+    Non Transformed. 
+    Not Absolute
+Scoring: Labels of -1 are 0 but all others are 1
+Attributes:
+        [drivers[a_folder][afile]['DStats']['AvgSpd']]
+        [drivers[a_folder][afile]['DStats']['NoOfTurns']]
+        [drivers[a_folder][afile]['DStats']['TotAngOfTurns']]
+        [drivers[a_folder][afile]['DStats']['TripEndDist']]
+
+#####################################################################################
+Submission 21: [Back to #19 just added two more Attributes]
+Score: 0.58275
+Method: 
+    pca = PCA(n_components=3)
+    db = DBSCAN(eps=0.7).fit(Xpca)
+Points: 
+    Default. 
+    Non Transformed. 
+    Not Absolute
+Scoring: Silhouette with default
+Attributes:
+        [drivers[a_folder][afile]['DStats']['AvgSpd']]g
+ 
+Clients
+ 
+Contact
+        [drivers[a_folder][afile]['DStats']['NoOfTurns']]
+        [drivers[a_folder][afile]['DStats']['TotAngOfTurns']]
+        [drivers[a_folder][afile]['DStats']['TripEndDist']]
+        [drivers[a_folder][afile]['DStats']['AvgDistDel']]
+        [drivers[a_folder][afile]['DStats']['SDevDistDel']] 
+
+#####################################################################################
+Submission 22: Made a lot of changes
+Score: 0.54225
+Method: 
+    pca = PCA(n_components=4).. A bout 95% Vriance was explained by the 4 Prin Comps
+    No algorithm.
+    Found the center (mean) of the 4 Prin Comp Cluster. 
+    Found the Distance of Each point from the Center
+    Converted Distance to a Z-Score (Normalized It)
+    Converted that to a probability and subtracted that from 1
+    Returned anything <0.1 as 0 and rest as 1 (because the histograms were showing a LOT of points less than 0.5)
+Points: 
+    Default. 
+    Non Transformed. 
+    Not Absolute
+Scoring: Silhouette with default
+Attributes:
+            ,[drivers[a_folder][afile]['DStats']['AvgSpd']]
+            ,[drivers[a_folder][afile]['DStats']['NoOfTurns']]
+            ,[drivers[a_folder][afile]['DStats']['TotAngOfTurns']]
+            ,[drivers[a_folder][afile]['DStats']['TripEndDist']]
+            ,[drivers[a_folder][afile]['DStats']['TotalDist']]
+            ,[drivers[a_folder][afile]['DStats']['TotalTime']]
+            ,[drivers[a_folder][afile]['DStats']['AvgDistDel']]
+            ,[drivers[a_folder][afile]['DStats']['AvgACosDel']] 
+            ,[drivers[a_folder][afile]['DStats']['SDevDistDel']] 
+
+#####################################################################################
+Submission 23: Similar to 18 that gave the best Score thus far but changed how the input data was sourced
+Input Data:
+    Applied Smoothing... i.e. instead of storing each point, stored the entry each 5 seconds only.
+    Rounded the X and Y co-ords to whole numbers.. removed fractions.. Even more smoothing
+    Removed the angle from the origin
+    Process ran much faster as less data to process
+Score: 0.59304
+Method: 
+    pca = PCA(n_components=3)
+    db = DBSCAN(eps=0.7).fit(Xpca)
+Points: 
+    Default. 
+    Non Transformed. 
+    Not Absolute
+Scoring: Silhouette with default
+Attributes:
+        [drivers[a_folder][afile]['DStats']['AvgSpd']]
+        [drivers[a_folder][afile]['DStats']['NoOfTurns']]
+        [drivers[a_folder][afile]['DStats']['TotAngOfTurns']]
+        [drivers[a_folder][afile]['DStats']['TripEndDist']]
+
+#####################################################################################
+Submission 24:
+Input Data:
+    Applied Smoothing... i.e. instead of storing each point, stored the entry each 5 seconds only.
+    Rounded the X and Y co-ords to whole numbers.. removed fractions.. Even more smoothing
+    Removed the angle from the origin
+    Process ran much faster as less data to process
+Score: 0.64848
+Method: 
+    pca = PCA(n_components=3)
+    db = KMeans(n_clusters=3,n_jobs = -1).fit(Xpca)
+Points: 
+    Default. 
+    Non Transformed. 
+    Not Absolute
+Scoring: ZScore of the distance to the closest cluster
+Attributes:
+        ,[drivers[a_folder][afile]['DStats']['AvgSpd']]
+        ,[drivers[a_folder][afile]['DStats']['NoOfTurns']]
+        ,[drivers[a_folder][afile]['DStats']['TripEndDist']]
+        ,[drivers[a_folder][afile]['DStats']['TotalDist']]
+        ,[drivers[a_folder][afile]['DStats']['AvgDistDel']]
+        ,[drivers[a_folder][afile]['DStats']['AvgACosDel']] 
+        ,[drivers[a_folder][afile]['DStats']['SDevDistDel']] 
+#####################################################################################
+Submission 25: Same as above but scored everything <0.1 as 0 and the rest as 1
+Input Data:
+    Applied Smoothing... i.e. instead of storing each point, stored the entry each 5 seconds only.
+    Rounded the X and Y co-ords to whole numbers.. removed fractions.. Even more smoothing
+    Removed the angle from the origin
+    Process ran much faster as less data to process
+Score: 0.55492
+Method: 
+    pca = PCA(n_components=3)
+    db = KMeans(n_clusters=3,n_jobs = -1).fit(Xpca)
+Points: 
+    Default. 
+    Non Transformed. g
+    Not Absolute
+Scoring: ZScore of the distance to the closest cluster
+Attributes:
+        ,[drivers[a_folder][afile]['DStats']['AvgSpd']]
+        ,[drivers[a_folder][afile]['DStats']['NoOfTurns']]
+        ,[drivers[a_folder][afile]['DStats']['TripEndDist']]
+        ,[drivers[a_folder][afile]['DStats']['TotalDist']]
+        ,[drivers[a_folder][afile]['DStats']['AvgDistDel']]
+        ,[drivers[a_folder][afile]['DStats']['AvgACosDel']] 
+        ,[drivers[a_folder][afile]['DStats']['SDevDistDel']] 
+#####################################################################################
+Submission 26: Same as 25 but took intervals at 10 seconds instead of 5.. Score Improved
+Input Data: 
+    Applied Smoothing... i.e. instead of storing each point, stored the entry each 10 seconds only.
+    Rounded the X and Y co-ords to whole numbers.. removed fractions.. Even more smoothing
+    Removed the angle from the origin
+    Process ran much faster as less data to process
+Score: 0.65264
+Method: 
+    pca = PCA(n_components=3)
+    db = KMeans(n_clusters=3,n_jobs = -1).fit(Xpca)g
+Points: 
+    Default. 
+    Non Transformed.
+    Not Absolute
+Scoring: ZScore of the distance to the closest cluster
+Attributes:
+        ,[drivers[a_folder][afile]['DStats']['AvgSpd']]
+        ,[drivers[a_folder][afile]['DStats']['NoOfTurns']]
+        ,[drivers[a_folder][afile]['DStats']['TripEndDist']]
+        ,[drivers[a_folder][afile]['DStats']['TotalDist']]
+        ,[drivers[a_folder][afile]['DStats']['AvgDistDel']]
+        ,[drivers[a_folder][afile]['DStats']['AvgACosDel']] 
+        ,[drivers[a_folder][afile]['DStats']['SDevDistDel']] 
+#####################################################################################
+Submission 27: Same as 25 but took intervals at 30 seconds instead of 10.. Score declined marginally
+Input Data: 
+    Applied Smoothing... i.e. instead of storing each point, stored the entry each 30 seconds only.
+    Rounded the X and Y co-ords to whole numbers.. removed fractions.. Even more smoothing
+    Removed the angle from the origin0.55492
+    Process ran much faster as less data to process
+Score: 0.64304
+Method: 
+    pca = PCA(n_components=3)g
+    db = KMeans(n_clusters=3,n_jobs = -1).fit(Xpca)
+Points: 
+    Default. 
+    Non Transformed. 
+    Not Absolute0.55492
+Scoring: 
+    ZScore of the distance to the closest cluster
+
+Attributes:
+        ,[drivers[a_folder][afile]['DStats']['AvgSpd']]
+        ,[drivers[a_folder][afile]['DStats']['NoOfTurns']]
+        ,[drivers[a_folder][afile]['DStats']['TripEndDist']]
+        ,[drivers[a_folder][afile]['DStats']['TotalDist']]
+        ,[drivers[a_folder][afile]['DStats']['AvgDistDel']]
+        ,[drivers[a_folder][afile]['DStats']['AvgACosDel']] 
+        ,[drivers[a_folder][afile]['DStats']['SDevDistDel']] 
+#####################################################################################
+Submission 28: Same as 27 but instead of assuming probabilities are coming from a normal distribution, took them from an 
+                exponential distribution after using absolute of the z-scores
+Input Data: 
+    Applied Smoothing... i.e. instead of storing each point, stored the entry each 30 seconds only.
+    Rounded the X and Y co-ords to whole numbers.. removed fractions.. Even more smoothing
+    Removed the angle from the origin0.55492
+    Process ran much faster as less data to process
+Score: 0.54740
+Method: 
+    pca = PCA(n_components=3)g
+    db = KMeans(n_clusters=3,n_jobs = -1).fit(Xpca)
+Points: 
+    Default. 
+    Non Transformed. 
+    Not Absolute
+Scoring: 
+    ZScore of the distance to the closest cluster
+    Convert Zscore to absolute z-score
+    Fit it to an exponential distribution and get scale parameter
+    Find probabilities using a pdf of an exponential distrib using the same scale parameter
+
+Attributes:
+        ,[drivers[a_folder][afile]['DStats']['AvgSpd']]
+        ,[drivers[a_folder][afile]['DStats']['NoOfTurns']]
+        ,[drivers[a_folder][afile]['DStats']['TripEndDist']]
+        ,[drivers[a_folder][afile]['DStats']['TotalDist']]
+        ,[drivers[a_folder][afile]['DStats']['AvgDistDel']]0.55492
+        ,[drivers[a_folder][afile]['DStats']['AvgACosDel']] 
+        ,[drivers[a_folder][afile]['DStats']['SDevDistDel']] 
+#####################################################################################
+Submission 29: Same as 28 but bumped down the interval from 30 seconds to 10 seconds
+Input Data: 0.54740
+    Applied Smoothing... i.e. instead of storing each point, stored the entry each 10 seconds only.
+    Rounded the X and Y co-ords to whole numbers.. removed fractions.. Even more smoothing
+    Removed the angle from the origin
+    Process ran much faster as less data to process
+Score: 0.55047
+Method: 
+    pca = PCA(n_components=3)
+    db = KMeans(n_clusters=3,n_jobs = -1).fit(Xpca)
+Points: 
+    Default. 0.55492
+    Non Transformed. 
+    Not Absolute
+Scoring: 
+    ZScore of the distance to the closest cluster
+    Convert Zscore to absolute z-score
+    Fit it to an exponential distribution and get scale parameter
+    Find probabilities using a pdf of an exponential distrib using the same scale parameter
+
+Attributes:
+        ,[drivers[a_folder][afile]['DStats']['AvgSpd']]
+        ,[drivers[a_folder][afile]['DStats']['NoOfTurns']]
+        ,[drivers[a_folder][afile]['DStats']['TripEndDist']]
+        ,[drivers[a_folder][afile]['DStats']['TotalDist']]
+        ,[drivers[a_folder][afile]['DStats']['AvgDistDel']]
+        ,[drivers[a_folder][afile]['DStats']['AvgACosDel']] 
+        ,[drivers[a_folder][afile]['DStats']['SDevDistDel']] 
+
+#####################################################################################
+Submission 30: Same as 26 - 10 secs interval but instead of using cdf, I used the pdf and multiplied that by 2 to get the probabilities
+Input Data: 
+    Applied Smoothing... i.e. instead of storing each point, stored the entry each 10 seconds only.
+    Rounded the X and Y co-ords to whole numbers.. removed fractions.. Even more smoothing
+    Removed the angle from the origin
+    Process ran much faster as less data to process
+Score: 0.54790
+Method: 
+    pca = PCA(n_components=3)
+    db = KMeans(n_clusters=3,n_jobs = -1).fit(Xpca)
+Points: 
+    Default. 
+    Non Transformed. 
+    Not Absolute
+Scoring: 
+    ZScore of the distance to the closest cluster
+    Find probabilities using a pdf of a std normal distrib and multiply that by 2 to get the effective probs
+
+Attributes:
+        ,[drivers[a_folder][afile]['DStats']['AvgSpd']]
+        ,[drivers[a_folder][afile]['DStats']['NoOfTurns']]
+        ,[drivers[a_folder][afile]['DStats']['TripEndDist']]
+        ,[drivers[a_folder][afile]['DStats']['TotalDist']]
+        ,[drivers[a_folder][afile]['DStats']['AvgDistDel']]
+        ,[drivers[a_folder][afile]['DStats']['AvgACosDel']] 
+        ,[drivers[a_folder][afile]['DStats']['SDevDistDel']] 
+#####################################################################################
+Submission 31: Same as 26 but used other Attributes. Essentially replaced Cos Angles with Tan angles including the TotalNoOfTurns using Tan Angles
+Input Data: 
+    Applied Smoothing... i.e. instead of storing each point, stored the entry each 10 seconds only.
+    Rounded the X and Y co-ords to whole numbers.. removed fractions.. Even more smoothing
+    Removed the angle from the origin
+    Process ran much faster as less data to process
+Score: 0.63863
+Method: 
+    pca = PCA(n_components=3)
+    db = KMeans(n_clusters=3,n_jobs = -1).fit(Xpca)
+Points: 
+    Default. 
+    Non Transformed. 
+    Not Absolute
+Scoring: 
+    ZScore of the distance to the closest cluster
+    Find probabilities using a cdf as in 26
+Attributes:
+    ,[drivers[a_folder][afile]['DStats']['AvgSpd']]
+    ,[drivers[a_folder][afile]['DStats']['NoOfTurns']]
+    ,[drivers[a_folder][afile]['DStats']['TripEndDist']]
+    ,[drivers[a_folder][afile]['DStats']['TotalDist']]
+    ,[drivers[a_folder][afile]['DStats']['AvgDistDel']]
+    ,[drivers[a_folder][afile]['DStats']['AvgATanDel']] 
+    ,[drivers[a_folder][afile]['DStats']['SDevDistDel']] 
+
+#####################################################################################
+Submission 32: Same as 31 but more Prin components and more clusters. Also reduced the frequency to 5 secs instead of 10
+Input Data: 
+    Applied Smoothing... i.e. instead of storing each point, stored the entry each 5 seconds only.
+    Rounded the X and Y co-ords to whole numbers.. removed fractions.. Even more smoothing
+    Removed the angle from the origin
+    Process ran much faster as less data to process
+Score: 0.64022
+Method: 0.64022
+    pca = PCA(n_components=5)
+    db = KMeans(n_clusters=4,n_jobs = -1).fit(Xpca)
+Points: 
+    Default. 
+    Non Transformed. 
+    Not Absolute
+Scoring: 
+    ZScore of the distance to the closest cluster
+    Find probabilities using a cdf as in 31
+Attributes:
+    ,[drivers[a_folder][afile]['DStats']['AvgSpd']]
+    ,[drivers[a_folder][afile]['DStats']['NoOfTurns']]
+    ,[drivers[a_folder][afile]['DStats']['TripEndDist']]
+    ,[drivers[a_folder][afile]['DStats']['TotalDist']]
+    ,[drivers[a_folder][afile]['DStats']['AvgDistDel']]
+    ,[drivers[a_folder][afile]['DStats']['AvgATanDel']] 
+    ,[drivers[a_folder][afile]['DStats']['SDevDistDel']] 
+
+
+#####################################################################################
+Submission 33: Same as 26 but used 10 clusters - used rule of thumb for k i.e. SQRT(n/2). Got best Score thus far.
+Input Data: 
+    Applied Smoothing... i.e. instead of storing each point, stored the entry each 10 seconds only.
+    Rounded the X and Y co-ords to whole numbers.. removed fractions.. Even more smoothing
+    Removed the angle from the origin
+    Process ran much faster as less data to process
+Score: 0.65566
+Method: 
+    pca = PCA(n_components=3)
+    db = KMeans(n_clusters=10,n_jobs = -1).fit(Xpca)g
+Points: 
+    Default. 
+    Non Transformed.
+    Not Absolute
+Scoring: ZScore of the distance to the closest cluster
+Attributes:
+        ,[drivers[a_folder][afile]['DStats']['AvgSpd']]
+        ,[drivers[a_folder][afile]['DStats']['NoOfTurns']]
+        ,[drivers[a_folder][afile]['DStats']['TripEndDist']]
+        ,[drivers[a_folder][afile]['DStats']['TotalDist']]
+        ,[drivers[a_folder][afile]['DStats']['AvgDistDel']]
+        ,[drivers[a_folder][afile]['DStats']['AvgACosDel']] 
+        ,[drivers[a_folder][afile]['DStats']['SDevDistDel']] 
+#####################################################################################
+Submission 34: Same as 32 but used 4 PCs 
+Input Data: 
+    Applied Smoothing... i.e. instead of storing each point, stored the entry each 10 seconds only.
+    Rounded the X and Y co-ords to whole numbers.. removed fractions.. Even more smoothing
+    Removed the angle from the origin
+    Process ran much faster as less data to process
+Score: 0.66422
+Method: 
+    pca = PCA(n_components=3)
+    db = KMeans(n_clusters=10,n_jobs = -1).fit(Xpca)g
+Points: 
+    Default. 
+    Non Transformed.
+    Not Absolute
+Scoring: ZScore of the distance to the closest cluster
+Attributes:
+        ,[drivers[a_folder][afile]['DStats']['AvgSpd']]
+        ,[drivers[a_folder][afile]['DStats']['NoOfTurns']]
+        ,[drivers[a_folder][afile]['DStats']['TripEndDist']]
+        ,[drivers[a_folder][afile]['DStats']['TotalDist']]
+        ,[drivers[a_folder][afile]['DStats']['AvgDistDel']]
+        ,[drivers[a_folder][afile]['DStats']['AvgACosDel']] 
+        ,[drivers[a_folder][afile]['DStats']['SDevDistDel']] 
+#####################################################################################
+Submission 35: Same as 34 but used 5 PCs 
+Input Data: 
+    Applied Smoothing... i.e. instead of storing each point, stored the entry each 10 seconds only.
+    Rounded the X and Y co-ords to whole numbers.. removed fractions.. Even more smoothing
+    Removed the angle from the origin
+    Process ran much faster as less data to process
+Score: 0.66422
+Method: 
+    pca = PCA(n_components=3)
+    db = KMeans(n_clusters=10,n_jobs = -1).fit(Xpca)g
+Points: 
+    Default. 
+    Non Transformed.
+    Not Absolute
+Scoring: ZScore of the distance to the closest cluster
+Attributes:
+        ,[drivers[a_folder][afile]['DStats']['AvgSpd']]
+        ,[drivers[a_folder][afile]['DStats']['NoOfTurns']]
+        ,[drivers[a_folder][afile]['DStats']['TripEndDist']]
+        ,[drivers[a_folder][afile]['DStats']['TotalDist']]
+        ,[drivers[a_folder][afile]['DStats']['AvgDistDel']]
+        ,[drivers[a_folder][afile]['DStats']['AvgACosDel']] 
+        ,[drivers[a_folder][afile]['DStats']['SDevDistDel']] 

@@ -1,0 +1,23 @@
+Split the Train and Test Data into Multiple Files:
+
+split -l 30000 -d -a 6 ../train.csv t
+split -l 30000 -d -a 6 ../test.csv t
+
+Once the splitting is done remove the first line from the first file from both the test and train splits.
+This line is the header.
+
+1. Train data needs to be split so that we can train a tree on each split and based on that tree we will evaluate the entire test dataset.
+2. Finally we will take the mode of the decisions and plug that as the final decision for the test data
+
+
+set(chunk2.C1)
+set(chunk2.banner_pos)
+set(chunk2.site_category)
+set(chunk2.device_type)
+set(chunk2.device_conn_type)
+set(chunk2.C15)
+set(chunk2.C16)
+set(chunk2.C18)
+set(chunk2.C19)
+set(chunk2.C21)
+
