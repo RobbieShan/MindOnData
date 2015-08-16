@@ -1,0 +1,28 @@
+1. Change Bash Prompt Coz the default sucks!
+
+https://www.kirsle.net/wizards/ps1.html
+
+2. Add user to Sudo Group
+
+sudo adduser <username> sudo
+
+3. Check the users for sudo Group
+
+getent group groupname
+
+
+4. Download VMWare Player from the website.. it comes in as a .bundle file.. Set properties to execute and install it using the command
+
+sudo sh *filename*.bundle
+
+5.I need Spark that comes precompiled with CDH 4.. and CDH 4 needs Java 7.. But Ubunto 12 comes default bundled with Java 6... so Upgrading Java
+
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update
+sudo apt-get install oracle-java7-installer
+
+6. Set JAVA_HOME 
+
+/usr/bin/java ----------->
+/etc/alternatives/java ------>
+/usr/lib/jvm/java-7-oracle/jre/bin/java
