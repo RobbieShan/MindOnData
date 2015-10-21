@@ -23,6 +23,12 @@ sudo apt-get install oracle-java7-installer
 
 6. Set JAVA_HOME 
 
+These are the links I found..
 /usr/bin/java ----------->
 /etc/alternatives/java ------>
 /usr/lib/jvm/java-7-oracle/jre/bin/java
+
+I had some confusion whether I had JDK installed or just the JRE.. but because I was able to javac -version I assumed I had the JDK installed
+ 
+export JAVA_HOME=/usr/lib/jvm/java-7-oracle/jre
+export PATH=$JAVA_HOME/bin:$PATH

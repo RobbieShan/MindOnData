@@ -15,7 +15,7 @@ getent group groupname
 
 sudo sh *filename*.bundle
 
-5.I need Spark that comes precompiled with CDH 4.. and CDH 4 needs Java 7.. But Ubunto 12 comes default bundled with Java 6... so Upgrading Java
+5.I need Spark that comes precompiled with CDH 4.. and CDH 4 needs Java 7.. But Ubuntu 12 comes default bundled with Java 6... so Upgrading Java
 
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
